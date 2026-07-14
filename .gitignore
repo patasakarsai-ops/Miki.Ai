@@ -18,3 +18,4 @@ firebase/             # admin-SDK service-account key(s) as downloaded — priva
 # --- OS / Editor ---
 .DS_Store
 .vscode/
+.env
