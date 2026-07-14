@@ -1,0 +1,16 @@
+# --- Web framework ---
+Flask==3.0.3
+python-dotenv==1.0.1
+
+# --- LLM + embeddings (Google Gemini) ---
+google-generativeai==0.8.3
+
+# --- Auth (Firebase server-side token verification) ---
+firebase-admin==6.5.0
+
+# --- Vector store (lightweight, no native build needed on Python 3.13) ---
+numpy>=2.1.0
+
+# --- Document parsing (RAG ingestion) ---
+pypdf==4.3.1
+python-docx==1.1.2

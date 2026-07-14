@@ -1,0 +1,20 @@
+# --- Python ---
+venv/                 # the virtual environment (recreate from requirements.txt)
+__pycache__/          # compiled Python cache files
+*.pyc
+
+# --- Miki AI specific ---
+models/*.gguf         # the Phi-3 model is huge (GBs) — never commit it
+uploads/*             # user-uploaded documents are private
+database/*            # vector store (vectors.npy + chunks.json) is generated data
+!uploads/.gitkeep     # but keep the empty folders in git
+!database/.gitkeep
+
+# --- Secrets ---
+.env                  # environment variables (API keys, Firebase config)
+firebase-key.json     # Firebase service account credentials (root-level name)
+firebase/             # admin-SDK service-account key(s) as downloaded — private
+
+# --- OS / Editor ---
+.DS_Store
+.vscode/

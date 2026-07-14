@@ -1,0 +1,216 @@
+/* ============================================================
+   Miki.ai — authentication pages
+   Split layout: brand hero (left) + auth card (right).
+   Inherits design tokens from style.css.
+   ============================================================ */
+
+.auth-body { height: 100vh; overflow: auto; background: var(--bg); }
+
+.auth-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  min-height: 100vh;
+}
+
+/* ---------------- Hero panel ---------------- */
+.auth-hero {
+  position: relative; overflow: hidden;
+  background: linear-gradient(150deg, #0b1020 0%, #1a1136 55%, #2a1030 100%);
+  color: #fff; display: flex; align-items: center;
+  padding: 64px;
+}
+.auth-hero__inner { position: relative; z-index: 2; max-width: 460px; }
+.auth-hero__glow {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(600px 400px at 20% 20%, rgba(66,133,244,.35), transparent 60%),
+    radial-gradient(500px 400px at 80% 80%, rgba(217,101,112,.30), transparent 60%),
+    radial-gradient(500px 500px at 70% 20%, rgba(155,114,203,.28), transparent 60%);
+  filter: blur(6px);
+}
+
+.auth-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 48px; font-family: "Google Sans", sans-serif; }
+.auth-brand__mark { font-size: 26px; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.auth-brand__name { font-size: 24px; font-weight: 600; }
+.auth-brand__name span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+.auth-hero__title {
+  font-family: "Google Sans", sans-serif; font-size: 52px; line-height: 1.05;
+  font-weight: 600; letter-spacing: -1px; margin-bottom: 20px;
+}
+.auth-hero__sub { font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.72); margin-bottom: 36px; }
+.auth-hero__points { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.auth-hero__points li { display: flex; align-items: center; gap: 12px; font-size: 15px; color: rgba(255,255,255,.9); }
+.auth-hero__points span {
+  width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%;
+  display: grid; place-items: center; font-size: 13px; font-weight: 700;
+  background: rgba(255,255,255,.12); color: #8ab4f8;
+}
+
+/* ---------------- Auth card ---------------- */
+.auth-main { position: relative; display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
+
+.auth-card {
+  width: 100%; max-width: 400px;
+  display: flex; flex-direction: column;
+  animation: card-in .45s cubic-bezier(.2,.7,.2,1);
+}
+@keyframes card-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+.auth-card__brand { display: none; align-items: center; gap: 8px; margin-bottom: 24px; justify-content: center; font-family: "Google Sans", sans-serif; }
+.auth-card__brand .auth-brand__mark { font-size: 22px; }
+.auth-card__brand .auth-brand__name { font-size: 20px; font-weight: 600; color: var(--text); }
+.auth-card__brand .auth-brand__name span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* Tabs */
+.auth-tabs {
+  position: relative; display: flex; background: var(--surface-2);
+  border-radius: 999px; padding: 4px; margin-bottom: 28px;
+}
+.auth-tab {
+  flex: 1; z-index: 2; border: none; background: none; cursor: pointer;
+  padding: 10px; font-size: 14px; font-weight: 500; font-family: inherit;
+  color: var(--text-2); border-radius: 999px; transition: color .2s;
+}
+.auth-tab.active { color: var(--text); }
+.auth-tabs__ink {
+  position: absolute; z-index: 1; top: 4px; bottom: 4px; left: 4px;
+  width: calc(50% - 4px); background: var(--surface); border-radius: 999px;
+  box-shadow: var(--shadow); transition: transform .28s cubic-bezier(.4,0,.2,1);
+}
+.auth-tabs__ink.right { transform: translateX(100%); }
+
+.auth-title { font-family: "Google Sans", sans-serif; font-size: 26px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.auth-subtitle { font-size: 15px; color: var(--text-3); margin-bottom: 24px; }
+
+/* Google button */
+.btn-google {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 12px;
+  background: var(--surface); color: var(--text); font-size: 14.5px; font-weight: 500;
+  cursor: pointer; font-family: inherit; transition: background .15s, box-shadow .15s;
+}
+.btn-google:hover { background: var(--surface-2); box-shadow: var(--shadow); }
+
+.auth-divider { display: flex; align-items: center; gap: 14px; margin: 20px 0; color: var(--text-3); font-size: 13px; }
+.auth-divider::before, .auth-divider::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+
+/* Form */
+.auth-form { display: flex; flex-direction: column; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field__label { font-size: 13px; font-weight: 500; color: var(--text-2); }
+.field input {
+  width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px;
+  background: var(--surface); color: var(--text); font-size: 15px; font-family: inherit;
+  outline: none; transition: border-color .15s, box-shadow .15s;
+}
+.field input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(66,133,244,.18); }
+.field__pw { position: relative; }
+.field__pw input { padding-right: 44px; }
+.pw-toggle {
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: var(--text-3); cursor: pointer;
+  padding: 8px; border-radius: 8px; display: grid; place-items: center;
+}
+.pw-toggle:hover { color: var(--text); background: var(--surface-2); }
+.pw-toggle svg { width: 18px; height: 18px; }
+
+.link-btn {
+  align-self: flex-end; background: none; border: none; color: var(--accent);
+  font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; padding: 0;
+}
+.link-btn:hover { text-decoration: underline; }
+.link-btn--inline { align-self: auto; font-size: 14px; }
+
+.auth-error {
+  background: rgba(217,48,37,.1); color: #d93025; border: 1px solid rgba(217,48,37,.25);
+  padding: 10px 14px; border-radius: 10px; font-size: 13.5px; line-height: 1.4;
+}
+[data-theme="dark"] .auth-error { color: #f28b82; }
+
+/* Success variant (e.g. "reset email sent") — reuses the same box. */
+.auth-error--ok {
+  background: rgba(26,138,84,.1); color: #1a8a54; border-color: rgba(26,138,84,.25);
+}
+[data-theme="dark"] .auth-error--ok { color: #81c995; }
+
+.btn-primary {
+  position: relative; width: 100%; padding: 13px; border: none; border-radius: 12px;
+  background: var(--grad); color: #fff; font-size: 15px; font-weight: 600;
+  cursor: pointer; font-family: inherit; margin-top: 4px;
+  transition: transform .15s, opacity .15s, filter .15s;
+}
+.btn-primary:hover:not(:disabled) { filter: brightness(1.05); transform: translateY(-1px); }
+.btn-primary:disabled { opacity: .7; cursor: default; }
+.btn-primary__spin {
+  display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.4);
+  border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite;
+  vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.auth-foot { text-align: center; font-size: 14px; color: var(--text-2); margin-top: 22px; }
+
+.theme-fab {
+  position: absolute; top: 20px; right: 20px;
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text-2); cursor: pointer;
+  display: grid; place-items: center; transition: background .15s;
+}
+.theme-fab:hover { background: var(--surface-2); color: var(--text); }
+.theme-fab svg { width: 18px; height: 18px; }
+
+/* Toast reuse */
+.toast-wrap { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 100; }
+
+/* ---------------- Pop! micro-interactions ---------------- */
+
+/* Living hero glow — the blobs drift & breathe instead of sitting still. */
+.auth-hero__glow { animation: glow-drift 14s ease-in-out infinite; }
+@keyframes glow-drift {
+  0%,100% { transform: scale(1)    translate(0, 0);     opacity: 1;   }
+  33%     { transform: scale(1.08) translate(2%, -2%);  opacity: .92; }
+  66%     { transform: scale(1.04) translate(-2%, 2%);  opacity: .96; }
+}
+
+/* Staggered "pop" entrance for the card's contents. */
+.auth-card > * { animation: pop-in .5s cubic-bezier(.22,1.4,.4,1) backwards; }
+.auth-card > *:nth-child(1) { animation-delay: .06s; }
+.auth-card > *:nth-child(2) { animation-delay: .12s; }
+.auth-card > *:nth-child(3) { animation-delay: .18s; }
+.auth-card > *:nth-child(4) { animation-delay: .24s; }
+.auth-card > *:nth-child(5) { animation-delay: .30s; }
+.auth-card > *:nth-child(6) { animation-delay: .36s; }
+.auth-card > *:nth-child(7) { animation-delay: .42s; }
+.auth-card > *:nth-child(8) { animation-delay: .48s; }
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(10px) scale(.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Brand marks give a little bounce on arrival. */
+.auth-brand__mark { display: inline-block; animation: mark-pop .6s cubic-bezier(.22,1.6,.4,1) both; }
+@keyframes mark-pop {
+  0%   { transform: scale(0)    rotate(-25deg); }
+  60%  { transform: scale(1.25) rotate(8deg);   }
+  100% { transform: scale(1)    rotate(0);       }
+}
+
+/* Tactile press-pop on the action buttons. */
+.btn-primary:active:not(:disabled) { transform: scale(.96); }
+.btn-google:active:not(:disabled)  { transform: scale(.96); transition: transform .08s; }
+
+/* Respect users who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+  .auth-hero__glow,
+  .auth-card > *,
+  .auth-brand__mark,
+  .auth-card { animation: none !important; }
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 880px) {
+  .auth-layout { grid-template-columns: 1fr; }
+  .auth-hero { display: none; }
+  .auth-card__brand { display: flex; }
+}
